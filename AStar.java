@@ -51,8 +51,8 @@ public class AStar {
     }
 
     private int evaluate(int n, Board b1, Board b2) {
-        if (n == 1) return manhattan(initial_b, final_b);
-        return outOfPlace(initial_b, final_b);
+        if (n == 2) return manhattan(b1, b2);
+        return outOfPlace(b1, b2);
     }
 
     // function to call once the final state is found
@@ -75,7 +75,6 @@ public class AStar {
         q.add(cur_state);
 
         while (q.size() > 0){
-
             if (isFinished(cur_state.getBoardObject().getBoard())) {
                 System.out.println("Final state found");
                 return playthrough(cur_state.getBoardObject());
