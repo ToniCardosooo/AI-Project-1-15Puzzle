@@ -50,8 +50,10 @@ public class AStar {
         return x;
     }
 
-    private int evaluate(Board b1, Board b2) {
-        return manhattan(initial_b, final_b) + outOfPlace(initial_b, final_b);
+    private int evaluate(int n, Board b1, Board b2) {
+        if (n == 1) return manhattan(initial_b, final_b);
+        if (n == 2) return outOfPlace(initial_b, final_b);
+        return 9999999;
     }
 
     // function to call once the final state is found
@@ -65,11 +67,10 @@ public class AStar {
         return s;
     }
 
-
-    public Stack<Board> solveAStar() {
+    public Stack<Board> solveAStar(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
-
+        
         AStarState cur_state = new AStarState(initial_b, 0, 0);
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
@@ -85,7 +86,7 @@ public class AStar {
                Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                if (child == null) continue;
 
-               AStarState c = new AStarState(child, evaluate(child, final_b), cur_state.getLevel() + 1);
+               AStarState c = new AStarState(child, evaluate(n, child, final_b), cur_state.getLevel() + 1);
                q.add(c);
             }
             q.poll();

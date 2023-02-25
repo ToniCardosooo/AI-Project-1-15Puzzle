@@ -22,9 +22,13 @@ public class Game{
         Board b_i = new Board(cfg_i);
         Board b_f = new Board(cfg_f);
 
-        AgentIDFS a_idfs = new AgentIDFS(b_i, b_f);
+        //AgentIDFS a_idfs = new AgentIDFS(b_i, b_f);
 
-        Stack<Board> play = a_idfs.solveIDFS(5);
+        //Stack<Board> play = a_idfs.solveIDFS(5);
+
+        AStar a_astar = new AStar(b_i, b_f);
+
+        Stack<Board> play = a_astar.solveAStar(2);
 
         if (play == null)
             System.out.println("Não foi encontrada a solução");
