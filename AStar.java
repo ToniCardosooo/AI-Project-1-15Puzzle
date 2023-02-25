@@ -25,13 +25,14 @@ public class AStar {
     //evaluation functions
     private int manhattan(Board b1, Board b2) {
         int x = 0;
+        first:
         for (int n = 0; n < 16; n++) {
             int i1 = 0, j1 = 0, i2 = 0, j2 = 0;
-            second:
             for (int i = 0; i < 4; i++){
-                for (int j = 0; j < 4; j++){
-                    if (b1.getBoard()[i][j] == n) {i1 = i; j1 = j; break second;}
-                    if (b2.getBoard()[i][j] == n) {i2 = i; j2 = j; break second;}
+                for (int j = 0; j < 4; j++) {
+                    if (b1.getBoard()[i][j] == n && b2.getBoard()[i][j] == n) {continue first;}
+                    if (b1.getBoard()[i][j] == n) {i1 = i; j1 = j;}
+                    if (b2.getBoard()[i][j] == n) {i2 = i; j2 = j;}
                 }
             }
             x += Math.abs(i1 - i2) + Math.abs(j1 - j2);
