@@ -53,6 +53,7 @@ public class Board{
 
     // setters
     public void setParent(Board p){parent = p;}
+    public void setBlank(int x, int y){x0 = x; y0 = y;}
 
     public Board setPos(int x, int y){
         if (!verify(x, y)) return null;
@@ -60,9 +61,8 @@ public class Board{
         int n = bb[x][y];
         bb[x][y] = 0;
         bb[x0][y0] = n;
-        x0 = x;
-        y0 = y;
         Board child = new Board(bb);
+        child.setBlank(x, y);
         child.setParent(this);
         return child;
     }
