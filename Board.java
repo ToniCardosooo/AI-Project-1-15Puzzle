@@ -43,7 +43,7 @@ public class Board{
         }
         return bb;
     }
-    public int[] getPos(){
+    public int[] getPos(){ //pos do 0
         int[] p = new int[2];
         p[0] = x0; p[1] = y0;
         return p;

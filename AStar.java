@@ -1,6 +1,5 @@
 import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Stack;
 
 public class AStar {
     private Board initial_b;
@@ -27,15 +26,13 @@ public class AStar {
 
     private int manhattan(Board b1, Board b2) {
         int x = 0;
-        int i1, j1, i2, j2;
-        primary:
+        int i1 = 0, j1 = 0, i2 = 0, j2 = 0;
         for (int n = 0; n < 16; n++) {
-            secondary:
+            second:
             for (int i = 0; i < 4; i++){
-                third:
                 for (int j = 0; j < 4; j++){
-                    if (b1.getBoard()[i][j] == n) {i1 = i; j1 = j; break secondary;}
-                    if (b2.getBoard()[i][j] == n) {i2 = i; j2 = j; break secondary;}
+                    if (b1.getBoard()[i][j] == n) {i1 = i; j1 = j; break second;}
+                    if (b2.getBoard()[i][j] == n) {i2 = i; j2 = j; break second;}
                 }
             }
             x += Math.abs(i1 - i2) + Math.abs(j1 - j2);
@@ -54,7 +51,7 @@ public class AStar {
     }
 
     private int evaluate(Board b1, Board b2) {
-        return manhattan(initial_b, final_b) + outOfPlace(initial_b, final_b)
+        return manhattan(initial_b, final_b) + outOfPlace(initial_b, final_b);
     }
 
     // function to call once the final state is found
@@ -67,5 +64,36 @@ public class AStar {
         }
         return s;
     }
+
+
+    public Stack<Board> solveAStar() {
+
+        int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+
+        AStarState cur_state = new AStarState(initial_b, 0, 0);
+        PriorityQueue<AStarState> q = new PriorityQueue<>();
+        q.add(cur_state);
+
+        while (q.size() > 0){
+
+            if (isFinished(cur_state.getBoardObject().getBoard())) {
+                System.out.println("Final state found");
+                return playthrough(cur_state.getBoardObject());
+            }
+
+            for (int[] v : vec){  
+               Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
+               if (child == null) continue;
+
+               AStarState c = new AStarState(child, evaluate(child, final_b), cur_state.getLevel() + 1);
+               q.add(c);
+            }
+            q.poll();
+            cur_state = q.peek();
+        }
+
+        return null;
+    }
+
 
 }
