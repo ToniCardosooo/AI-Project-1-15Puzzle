@@ -51,7 +51,8 @@ public class AStar {
 
     private int evaluate(int n, Board b1, Board b2) {
         if (n == 2) return manhattan(b1, b2);
-        return outOfPlace(b1, b2);
+        if (n == 1) return outOfPlace(b1, b2);
+        return manhattan(b1, b2) + outOfPlace(b1, b2);
     }
 
     // function to call once the final state is found

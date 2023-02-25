@@ -69,7 +69,7 @@ public class Game{
         }
 
         AStar a = new AStar(b_i, b_f);
-        Stack<Board> play = a.solveAStar(1);
+        Stack<Board> play = a.solveAStar(2);
 
         if (play == null)
             System.out.println("Não foi encontrada a solução");

@@ -16,7 +16,7 @@ public class AStarState implements Comparable<AStarState>{
 
 
     //setter
-    public void setScore(int x){score = x + level;}
+    public void setScore(int x){score = x + 2*level;}
 
     //comparator
     public int compareTo(AStarState other){
