@@ -68,8 +68,8 @@ public class Game{
             return;
         }
 
-        AgentIDFS a_idfs = new AgentIDFS(b_i, b_f);
-        Stack<Board> play = a_idfs.solveIDFS(15);
+        AStar a = new AStar(b_i, b_f);
+        Stack<Board> play = a.solveAStar(1);
 
         if (play == null)
             System.out.println("Não foi encontrada a solução");

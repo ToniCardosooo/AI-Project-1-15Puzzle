@@ -23,7 +23,6 @@ public class AStar {
     }
 
     //evaluation functions
-
     private int manhattan(Board b1, Board b2) {
         int x = 0;
         int i1 = 0, j1 = 0, i2 = 0, j2 = 0;
@@ -70,7 +69,7 @@ public class AStar {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
-        AStarState cur_state = new AStarState(initial_b, 0, 0);
+        AStarState cur_state = new AStarState(initial_b, 0);
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
 
@@ -84,7 +83,8 @@ public class AStar {
                Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                if (child == null) continue;
 
-               AStarState c = new AStarState(child, evaluate(n, child, final_b), cur_state.getLevel() + 1);
+               AStarState c = new AStarState(child, cur_state.getLevel() + 1);
+               c.setScore(evaluate(n, child, final_b));
                q.add(c);
             }
             q.poll();

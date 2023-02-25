@@ -3,9 +3,9 @@ public class AStarState implements Comparable<AStarState>{
     private int score;
     private int level;
 
-    AStarState(Board b, int s, int l) {
+    AStarState(Board b, int l) {
         cur = b;
-        score = s;
+        score = 0;
         level = l;
     }
 
