@@ -52,8 +52,7 @@ public class AStar {
 
     private int evaluate(int n, Board b1, Board b2) {
         if (n == 1) return manhattan(initial_b, final_b);
-        if (n == 2) return outOfPlace(initial_b, final_b);
-        return 9999999;
+        return outOfPlace(initial_b, final_b);
     }
 
     // function to call once the final state is found
@@ -70,7 +69,7 @@ public class AStar {
     public Stack<Board> solveAStar(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
-        
+
         AStarState cur_state = new AStarState(initial_b, 0, 0);
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
