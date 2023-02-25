@@ -42,8 +42,6 @@ public class AgentIDFS{
         // for loop that iterates the max_level for the DFS search
         for (int l = 1; l <= max_level; l++){
 
-            //System.out.println("Max Level = " + l);
-
             // set current state to initial state, and clear visited states set
             cur_state = new IDFSState(initial_b, 0);
             visited = new TreeSet<IDFSState>();
@@ -59,10 +57,6 @@ public class AgentIDFS{
                 int[] cur_blank_pos = cur_board.getPos();
                 int x0 = cur_blank_pos[0], y0 = cur_blank_pos[1];
                 int cur_level = cur_state.getLevel();
-
-
-                //System.out.println("Current Board = \n" + cur_board);
-
                     
                 // create state in all directions (child states of current state)
                 for (int[] v : vec){  
@@ -72,8 +66,6 @@ public class AgentIDFS{
                     // create child state
                     Board child_board = cur_board.setPos(x0+v[0], y0+v[1]);
                     IDFSState child_state = new IDFSState(child_board, cur_level+1);
-
-                    //System.out.println("Child Board = \n" + child_board);
 
                     // check if child is invalid (== null)
                     if (child_board == null) continue;
