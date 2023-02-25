@@ -25,8 +25,8 @@ public class AStar {
     //evaluation functions
     private int manhattan(Board b1, Board b2) {
         int x = 0;
-        int i1 = 0, j1 = 0, i2 = 0, j2 = 0;
         for (int n = 0; n < 16; n++) {
+            int i1 = 0, j1 = 0, i2 = 0, j2 = 0;
             second:
             for (int i = 0; i < 4; i++){
                 for (int j = 0; j < 4; j++){
@@ -75,25 +75,22 @@ public class AStar {
         q.add(cur_state);
 
         while (q.size() > 0){
-            if (isFinished(cur_state.getBoardObject().getBoard())) {
-                System.out.println("Final state found");
-                return playthrough(cur_state.getBoardObject());
-            }
 
             for (int[] v : vec){  
-               Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
-               if (child == null) continue;
+                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
+                if (child == null) continue;
 
-               AStarState c = new AStarState(child, cur_state.getLevel() + 1);
-               c.setScore(evaluate(n, child, final_b));
-               q.add(c);
+                if (isFinished(child.getBoard())) {
+                System.out.println("Final state found");
+                return playthrough(child);
+                }
+
+                AStarState c = new AStarState(child, cur_state.getLevel() + 1);
+                c.setScore(evaluate(n, child, final_b));
+                q.add(c);
             }
-            q.poll();
-            cur_state = q.peek();
+            cur_state = q.poll();
         }
-
         return null;
     }
-
-
 }

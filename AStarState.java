@@ -16,7 +16,7 @@ public class AStarState implements Comparable<AStarState>{
 
 
     //setter
-    public void setScore(int x){score = x + 2*level;}
+    public void setScore(int x){score = x + level;}
 
     //comparator
     public int compareTo(AStarState other){
@@ -25,6 +25,13 @@ public class AStarState implements Comparable<AStarState>{
         if (cur_s != other_s) {
             return Integer.compare(cur_s, other_s);
         }
+
+        int other_lvl = other.getLevel();
+        int cur_lvl = getLevel();
+        if (cur_lvl != other_lvl) {
+            return Integer.compare(cur_lvl, other_lvl);
+        }
+
         int[][] other_board = other.getBoardObject().getBoard();
         int[][] cur_board = cur.getBoard();
         return cur_board.toString().compareTo(other_board.toString());
