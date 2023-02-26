@@ -1,6 +1,4 @@
 import java.util.Stack;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class AgentIDFS{
     private Board initial_b; // para guardar uma copia do tabuleiro inicial
@@ -35,7 +33,7 @@ public class AgentIDFS{
     // Iterative-Depth-First-Search algorithm that returns the playthrough to finish the game in a stack
     public Stack<Board> solveIDFS(int max_level){
         IDFSState cur_state;
-        Set<IDFSState> visited;
+        Stack<IDFSState> cur_path;
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
@@ -44,7 +42,7 @@ public class AgentIDFS{
 
             // set current state to initial state, and clear visited states set
             cur_state = new IDFSState(initial_b, 0);
-            visited = new TreeSet<IDFSState>();
+            cur_path = new Stack<IDFSState>();
 
             // stack for DFS algorithm
             Stack<IDFSState> s = new Stack<>();
@@ -52,11 +50,23 @@ public class AgentIDFS{
 
             // main loop of DFS search
             while (s.size() > 0){
+                cur_state = s.pop();
+
                 // gather current state's board info and level (for code simplification purposes)
                 Board cur_board = cur_state.getBoardObject();
                 int[] cur_blank_pos = cur_board.getPos();
                 int x0 = cur_blank_pos[0], y0 = cur_blank_pos[1];
                 int cur_level = cur_state.getLevel();
+
+                // update current path
+                if (cur_path.size() > 0){
+                    Board path_latest_board = cur_path.peek().getBoardObject();
+                    while (!path_latest_board.isEqual(cur_board.getParent())){
+                        cur_path.pop();
+                        path_latest_board = cur_path.peek().getBoardObject();
+                    }
+                }
+                cur_path.push(cur_state);
                     
                 // create state in all directions (child states of current state)
                 for (int[] v : vec){  
@@ -77,16 +87,14 @@ public class AgentIDFS{
                     }
 
                     // else
-                    // check if child state is an already existing state in the DFS tree
-                    if (!visited.contains(child_state)){
-                        visited.add(child_state);
+                    // check if child state is an already existing state in the current path (preventing cycles)
+                    if (!cur_path.contains(child_state)){
                         // push child state to the DFS stack
                         s.push(child_state);
                     }
 
                 } // end of for loop
-
-                cur_state = s.pop();                
+                                
             } // end of while loop
             
         } // end of iterative DFS loop

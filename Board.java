@@ -67,6 +67,17 @@ public class Board{
         return child;
     }
 
+    // to check if boards are equal
+    public boolean isEqual(Board other){
+        int[][] other_b = other.getBoard();
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                if (b[i][j] != other_b[i][j]) return false;
+            }
+        }
+        return true;
+    }
+
     // print
     public String toString(){
         String s = "";
