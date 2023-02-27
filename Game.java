@@ -46,6 +46,27 @@ public class Game{
         return (isSolvableToFSC(i) == isSolvableToFSC(f));
     }
 
+
+    // -------------------------------- GREEDY --------------------------------
+    public static void Greedy(Board b_i, Board b_f, Scanner in){
+        System.out.println("Escolhe uma heurística:");
+        System.out.println("1 - Quantas peças estão fora de sítio");
+        System.out.println("2 - Distância Manhattan");
+        int mode = in.nextInt();
+
+        // Find all the moves from Greedy
+        Greedy gree = new Greedy(b_i, b_f);
+        Stack<Board> solve = gree.solveGreedy(mode); 
+
+        // Plays all the moves
+        if (solve == null)
+            System.out.println("Não foi encontrada a solução");
+        else{
+            while (solve.size() > 0)
+                System.out.println(solve.pop());  
+        }
+    }
+
     // ----------------------------------------------------------------------
 
     // -------------------------------- MAIN --------------------------------
@@ -78,6 +99,8 @@ public class Game{
                 System.out.println(play.pop());
             }
         }
-    
+
+        Greedy(b_i, b_f, in);
+        in.close();
     }
 }
