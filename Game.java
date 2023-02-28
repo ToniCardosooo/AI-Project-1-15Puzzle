@@ -110,10 +110,12 @@ public class Game{
                 play = a_AStar2.solveAStar(2);
                 break;
             case "Greedy-misplaced":
-                /* to add (meow) */
+                Greedy a_Greedy1 = new Greedy(b_i, b_f);
+                play = a_Greedy1.solveGreedy(1);
                 break;
             case "Greedy-Manhattan":
-                /* to add (meow) */
+                Greedy a_Greedy2 = new Greedy(b_i, b_f);
+                play = a_Greedy2.solveGreedy(2);
                 break;
             default:
                 break;

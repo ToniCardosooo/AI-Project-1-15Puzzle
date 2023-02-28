@@ -70,8 +70,8 @@ public class Greedy {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
-        AStarState cur_state = new AStarState(initial_b, 0);
-        PriorityQueue<AStarState> q = new PriorityQueue<>();
+        GreedyState cur_state = new GreedyState(initial_b);
+        PriorityQueue<GreedyState> q = new PriorityQueue<>();
         q.add(cur_state);   
 
         while (q.size() > 0){
@@ -79,13 +79,15 @@ public class Greedy {
             for (int[] v : vec){  
                  Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
+                //if (child.isEqual(cur_state.getBoardObject().getParent()))
+                //   continue;
 
                 if (isFinished(child.getBoard())) {
                 System.out.println("Final state found");
                 return playthrough(child);
                 }
 
-                AStarState c = new AStarState(child, cur_state.getLevel() + 1);
+                GreedyState c = new GreedyState(child);
                 c.setScore(evaluate(n, child, final_b));
                 q.add(c);
             }
