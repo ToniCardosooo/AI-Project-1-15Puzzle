@@ -1,10 +1,10 @@
 import java.util.Stack;
 
-public class AgentIDFS{
+public class IDFS{
     private Board initial_b; // para guardar uma copia do tabuleiro inicial
     private Board final_b; // para guardar uma copia do tabuleiro final
 
-    AgentIDFS(Board i, Board f){
+    IDFS(Board i, Board f){
         initial_b = new Board(i.getBoard());
         final_b = new Board(f.getBoard());
     }

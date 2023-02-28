@@ -47,44 +47,22 @@ public class Game{
     }
 
 
-    // -------------------------------- GREEDY --------------------------------
-    public static void Greedy(Board b_i, Board b_f, Scanner in){
-        System.out.println("Escolhe uma heurística:");
-        System.out.println("1 - Quantas peças estão fora de sítio");
-        System.out.println("2 - Distância Manhattan");
-        int mode = in.nextInt();
-
-        // Find all the moves from Greedy
-        Greedy gree = new Greedy(b_i, b_f);
-        Stack<Board> solve = gree.solveGreedy(mode); 
-
-        // Plays all the moves
-        if (solve == null)
-            System.out.println("Não foi encontrada a solução");
-        else{
-            while (solve.size() > 0)
-                System.out.println(solve.pop());  
-        }
-    }
-
-    // ----------------------------------------------------------------------
-
     // -------------------------------- MAIN --------------------------------
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        // ler boards do input
+        // read boards
         int[][] cfg_i = readBoard(in);
         int[][] cfg_f = readBoard(in);
 
         Board b_i = new Board(cfg_i);
         Board b_f = new Board(cfg_f);
 
-        // pre-verificar se é possivel chegar de b_i até b_f
+        // check if it's possible to go from b_i to b_f
         if (!isSolvable(b_i, b_f)){
-            System.out.println("It's impossible to go from");
+            System.out.println("It's impossible to go from\n");
             System.out.println(b_i);
-            System.out.println("to");
+            System.out.println("to\n");
             System.out.println(b_f);
             return;
         }
@@ -98,7 +76,7 @@ public class Game{
                 /* to add (meow) */
                 break;
             case "IDFS":
-                AgentIDFS a_IDFS = new AgentIDFS(b_i, b_f);
+                IDFS a_IDFS = new IDFS(b_i, b_f);
                 play = a_IDFS.solveIDFS(80);
                 break;
             case "A*-misplaced":
@@ -122,7 +100,7 @@ public class Game{
         }
 
         if (play == null)
-            System.out.println("Não foi encontrada a solução");
+            System.out.println("A solution was not found!");
         else{
             while (play.size() > 0){
                 System.out.println(play.pop());
