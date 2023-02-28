@@ -89,8 +89,35 @@ public class Game{
             return;
         }
 
-        AStar a = new AStar(b_i, b_f);
-        Stack<Board> play = a.solveAStar(2);
+        Stack<Board> play = null;
+        switch (args[0]) {
+            case "DFS":
+                /* to add (meow) */
+                break;
+            case "BFS":
+                /* to add (meow) */
+                break;
+            case "IDFS":
+                AgentIDFS a_IDFS = new AgentIDFS(b_i, b_f);
+                play = a_IDFS.solveIDFS(80);
+                break;
+            case "A*-misplaced":
+                AStar a_AStar1 = new AStar(b_i, b_f);
+                play = a_AStar1.solveAStar(1);
+                break;
+            case "A*-Manhattan":
+                AStar a_AStar2 = new AStar(b_i, b_f);
+                play = a_AStar2.solveAStar(2);
+                break;
+            case "Greedy-misplaced":
+                /* to add (meow) */
+                break;
+            case "Greedy-Manhattan":
+                /* to add (meow) */
+                break;
+            default:
+                break;
+        }
 
         if (play == null)
             System.out.println("Não foi encontrada a solução");
@@ -100,7 +127,6 @@ public class Game{
             }
         }
 
-        Greedy(b_i, b_f, in);
         in.close();
     }
 }
