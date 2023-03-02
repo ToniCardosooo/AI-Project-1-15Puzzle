@@ -34,7 +34,7 @@ public class BFS{
         return s;
     }
 
-    // Depth-First-Search algorithm that returns the playthrough to finish the game in a stack
+    // Breadth-First-Search algorithm that returns the playthrough to finish the game in a stack
     public Stack<Board> solveBFS(){
       
         NIState cur_state = new NIState(initial_b, 0);
