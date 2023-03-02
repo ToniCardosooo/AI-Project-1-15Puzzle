@@ -1,4 +1,4 @@
-public class IDFSState implements Comparable<IDFSState>{
+public class NIState implements Comparable<NIState>{
     private Board cur_b;
     private int level;
 
@@ -13,7 +13,7 @@ public class IDFSState implements Comparable<IDFSState>{
     public int getLevel(){return level;}
 
     // comparator
-    public int compareTo(IDFSState other){
+    public int compareTo(NIState other){
         int[][] other_board = other.getBoardObject().getBoard();
         int[][] cur_board = cur_b.getBoard();
 
