@@ -72,9 +72,10 @@ public class Greedy {
     public Stack<Board> solveGreedy(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
-
+        Set<GreedyState> visited = new TreeSet<GreedyState>();
         GreedyState cur_state = new GreedyState(initial_b, 0);
         PriorityQueue<GreedyState> q = new PriorityQueue<>();
+
         q.add(cur_state);   
         int max_size = 0;
         int max_level = 0;
@@ -90,14 +91,18 @@ public class Greedy {
 
                 if (isFinished(child.getBoard())) {
                     System.out.println("Maximum moves stored in memory: " + max_size);
-                    System.out.println("Final state found at a depth of " + max_level);
+                    System.out.println("Final state found at a depth of " + (max_level+1));
                     return playthrough(child);
                 }
 
                 GreedyState c = new GreedyState(child, cur_state.getLevel() + 1);
                 c.setScore(evaluate(n, child, final_b));
-                q.add(c);
 
+                if (!visited.contains(c)){
+                    visited.add(c);
+                    q.add(c);
+                } 
+                
                 if(cur_state.getLevel() > max_level) max_level = cur_state.getLevel();
                 if(q.size() > max_size) max_size = q.size();
             }
