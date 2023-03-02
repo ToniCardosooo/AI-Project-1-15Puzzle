@@ -41,7 +41,7 @@ public class BFS{
         Set<NIState> visited = new TreeSet<NIState>();
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
-            // stack for DFS algorithm
+            // queue for BFS algorithm
             Queue<NIState> q = new LinkedList<NIState>();
             q.add(cur_state);
 
