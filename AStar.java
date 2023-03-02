@@ -72,6 +72,7 @@ public class AStar {
 
         AStarState cur_state = new AStarState(initial_b, 0);
         PriorityQueue<AStarState> q = new PriorityQueue<>();
+        Set<NIState> visited = new TreeSet<NIState>();
         q.add(cur_state);
 
         while (q.size() > 0){
@@ -87,7 +88,10 @@ public class AStar {
 
                 AStarState c = new AStarState(child, cur_state.getLevel() + 1);
                 c.setScore(evaluate(n, child, final_b));
-                q.add(c);
+                if (!visited.contains(c)){
+                    visited.add(c);
+                    q.add(c);
+                }               
             }
         }
         return null;
