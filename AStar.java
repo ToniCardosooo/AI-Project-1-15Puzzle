@@ -1,5 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class AStar {
     private Board initial_b;
