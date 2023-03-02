@@ -86,7 +86,7 @@ public class Greedy {
                 //   continue;
 
                 if (isFinished(child.getBoard())) {
-                    System.out.println("Maximun moves stored in memory: " + max_size);
+                    System.out.println("Maximum moves stored in memory: " + max_size);
                     System.out.println("Final state found");
                     return playthrough(child);
                 }
