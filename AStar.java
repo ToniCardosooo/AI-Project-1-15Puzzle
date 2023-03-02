@@ -77,7 +77,7 @@ public class AStar {
         while (q.size() > 0){
             cur_state = q.poll();
             for (int[] v : vec){  
-                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
+                Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
 
                 if (isFinished(child.getBoard())) {
