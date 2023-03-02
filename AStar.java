@@ -75,7 +75,7 @@ public class AStar {
 
         AStarState cur_state = new AStarState(initial_b, 0);
         PriorityQueue<AStarState> q = new PriorityQueue<>();
-        Set<NIState> visited = new TreeSet<NIState>();
+        Set<AStarState> visited = new TreeSet<AStarState>();
         q.add(cur_state);
 
         while (q.size() > 0){
