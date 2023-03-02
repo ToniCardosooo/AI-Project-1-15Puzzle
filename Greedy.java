@@ -66,6 +66,7 @@ public class Greedy {
         return s;
     }
 
+    // Function that solves the board
     public Stack<Board> solveGreedy(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
@@ -73,6 +74,7 @@ public class Greedy {
         GreedyState cur_state = new GreedyState(initial_b);
         PriorityQueue<GreedyState> q = new PriorityQueue<>();
         q.add(cur_state);   
+        int max_size = 0;
 
         while (q.size() > 0){
             cur_state = q.poll();
@@ -84,15 +86,17 @@ public class Greedy {
                 //   continue;
 
                 if (isFinished(child.getBoard())) {
-                System.out.println("Final state found");
-                return playthrough(child);
+                    System.out.println("Maximun moves stored in memory: " + max_size);
+                    System.out.println("Final state found");
+                    return playthrough(child);
                 }
 
                 GreedyState c = new GreedyState(child);
                 c.setScore(evaluate(n, child, final_b));
                 q.add(c);
-            }
 
+                if(q.size() > max_size) max_size = q.size();
+            }
         }
         return null;
     }
