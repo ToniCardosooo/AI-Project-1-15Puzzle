@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class IDFS{
+public class DFS{
     private Board initial_b; // saves a copy of the initial board
     private Board final_b; // saves a copy of the final board
 
@@ -30,15 +30,12 @@ public class IDFS{
         return s;
     }
 
-    // Iterative-Depth-First-Search algorithm that returns the playthrough to finish the game in a stack
-    public Stack<Board> solveIDFS(int max_level){
+    // Depth-First-Search algorithm that returns the playthrough to finish the game in a stack
+    public Stack<Board> solveDFS(int max_level){
         NIState cur_state;
         Stack<NIState> cur_path;
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
-
-        // for loop that iterates the max_level for the DFS search
-        for (int l = 1; l <= max_level; l++){
 
             // set current state to initial state, and clear visited states set
             cur_state = new NIState(initial_b, 0);
@@ -96,8 +93,6 @@ public class IDFS{
                 } // end of for loop
                                 
             } // end of while loop
-            
-        } // end of iterative DFS loop
 
         // if code reaches this point, then there is no solution for the given initial state
         return null;
