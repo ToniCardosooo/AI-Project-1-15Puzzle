@@ -3,7 +3,7 @@ public class NIState implements Comparable<NIState>{
     private int level;
 
     // construtor
-    IDFSState(Board b, int l){
+    NIState(Board b, int l){
         cur_b = b;
         level = l;
     }
