@@ -56,13 +56,12 @@ public class BFS{
                 return playthrough(child);
                 }
 
-                if (!visited.contains(child_state)){
-                    visited.add(child_state);
-                }
-                else {continue;}
-                
                 NIState c = new NIState(child, cur_state.getLevel() + 1);
-                q.add(c);
+                
+                if (!visited.contains(c)){
+                    visited.add(c);
+                    q.add(c);
+                }                
             }
         }
 
