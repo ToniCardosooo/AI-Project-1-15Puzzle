@@ -32,8 +32,8 @@ public class IDFS{
 
     // Iterative-Depth-First-Search algorithm that returns the playthrough to finish the game in a stack
     public Stack<Board> solveIDFS(int max_level){
-        IDFSState cur_state;
-        Stack<IDFSState> cur_path;
+        NIState cur_state;
+        Stack<NIState> cur_path;
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
@@ -41,11 +41,11 @@ public class IDFS{
         for (int l = 1; l <= max_level; l++){
 
             // set current state to initial state, and clear visited states set
-            cur_state = new IDFSState(initial_b, 0);
-            cur_path = new Stack<IDFSState>();
+            cur_state = new NIState(initial_b, 0);
+            cur_path = new Stack<NIState>();
 
             // stack for DFS algorithm
-            Stack<IDFSState> s = new Stack<>();
+            Stack<NIState> s = new Stack<>();
             s.push(cur_state);
 
             // main loop of DFS search
@@ -75,7 +75,7 @@ public class IDFS{
 
                     // create child state
                     Board child_board = cur_board.setPos(x0+v[0], y0+v[1]);
-                    IDFSState child_state = new IDFSState(child_board, cur_level+1);
+                    NIState child_state = new NIState(child_board, cur_level+1);
 
                     // check if child is invalid (== null)
                     if (child_board == null) continue;
