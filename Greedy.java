@@ -1,5 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Greedy {
     private Board initial_b;
@@ -71,30 +73,32 @@ public class Greedy {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
-        GreedyState cur_state = new GreedyState(initial_b);
+        GreedyState cur_state = new GreedyState(initial_b, 0);
         PriorityQueue<GreedyState> q = new PriorityQueue<>();
         q.add(cur_state);   
         int max_size = 0;
+        int max_level = 0;
 
         while (q.size() > 0){
             cur_state = q.poll();
 
             for (int[] v : vec){  
-                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
+                Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
                 //if (child.isEqual(cur_state.getBoardObject().getParent()))
                 //   continue;
 
                 if (isFinished(child.getBoard())) {
                     System.out.println("Maximum moves stored in memory: " + max_size);
-                    System.out.println("Final state found");
+                    System.out.println("Final state found at a depth of " + max_level);
                     return playthrough(child);
                 }
 
-                GreedyState c = new GreedyState(child);
+                GreedyState c = new GreedyState(child, cur_state.getLevel() + 1);
                 c.setScore(evaluate(n, child, final_b));
                 q.add(c);
 
+                if(cur_state.getLevel() > max_level) max_level = cur_state.getLevel();
                 if(q.size() > max_size) max_size = q.size();
             }
         }

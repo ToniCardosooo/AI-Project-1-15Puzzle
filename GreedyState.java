@@ -1,15 +1,19 @@
 public class GreedyState implements Comparable<GreedyState>{
     private Board cur;
     private int score;
+    private int level;
 
-    GreedyState(Board b) {
+    GreedyState(Board b,  int l) {
         cur = b;
         score = 0;
+        level = l;
     }
 
     //getters
     public Board getBoardObject(){return cur;}
     public int getScore(){return score;}
+    public int getLevel(){return level;}
+
 
     //setter
     public void setScore(int x){score = x;}
