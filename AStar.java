@@ -66,6 +66,7 @@ public class AStar {
         return s;
     }
 
+    // A* Search algorithm that returns the playthrough to finish the game in a stack
     public Stack<Board> solveAStar(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
