@@ -1,8 +1,8 @@
 import java.util.Stack;
 
 public class IDFS{
-    private Board initial_b; // para guardar uma copia do tabuleiro inicial
-    private Board final_b; // para guardar uma copia do tabuleiro final
+    private Board initial_b; // saves a copy of the initial board
+    private Board final_b; // saves a copy of the final board
 
     IDFS(Board i, Board f){
         initial_b = new Board(i.getBoard());
