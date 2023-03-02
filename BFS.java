@@ -42,7 +42,7 @@ public class BFS{
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
             // stack for DFS algorithm
-            Queue<NIState> q = new Queue<NIState>();
+            Queue<NIState> q = new LinkedList<NIState>();
             q.add(cur_state);
 
         while (q.size() > 0){

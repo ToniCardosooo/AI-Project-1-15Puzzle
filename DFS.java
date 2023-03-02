@@ -4,7 +4,7 @@ public class DFS{
     private Board initial_b; // saves a copy of the initial board
     private Board final_b; // saves a copy of the final board
 
-    IDFS(Board i, Board f){
+    DFS(Board i, Board f){
         initial_b = new Board(i.getBoard());
         final_b = new Board(f.getBoard());
     }
@@ -67,9 +67,6 @@ public class DFS{
                     
                 // create state in all directions (child states of current state)
                 for (int[] v : vec){  
-                    // check if current state is over limit level
-                    if (cur_level > l) break;
-
                     // create child state
                     Board child_board = cur_board.setPos(x0+v[0], y0+v[1]);
                     NIState child_state = new NIState(child_board, cur_level+1);
