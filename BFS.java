@@ -1,6 +1,8 @@
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class BFS{
     private Board initial_b; // saves a copy of the initial board
@@ -36,6 +38,7 @@ public class BFS{
     public Stack<Board> solveBFS(){
       
         NIState cur_state = new NIState(initial_b, 0);
+        Set<NIState> visited = new TreeSet<NIState>();
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
             // stack for DFS algorithm
@@ -47,12 +50,17 @@ public class BFS{
             for (int[] v : vec){  
                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
-              
+                
                 if (isFinished(child.getBoard())) {
                 System.out.println("Final state found");
                 return playthrough(child);
                 }
 
+                if (!visited.contains(child_state)){
+                    visited.add(child_state);
+                }
+                else {continue;}
+                
                 NIState c = new NIState(child, cur_state.getLevel() + 1);
                 q.add(c);
             }
