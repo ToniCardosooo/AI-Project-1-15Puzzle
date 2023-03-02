@@ -52,8 +52,7 @@ public class AStar {
 
     private int evaluate(int n, Board b1, Board b2) {
         if (n == 2) return manhattan(b1, b2);
-        if (n == 1) return outOfPlace(b1, b2);
-        return manhattan(b1, b2) + outOfPlace(b1, b2);
+        return outOfPlace(b1, b2);
     }
 
     // function to call once the final state is found
@@ -76,7 +75,7 @@ public class AStar {
         q.add(cur_state);
 
         while (q.size() > 0){
-
+            cur_state = q.poll();
             for (int[] v : vec){  
                  Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
@@ -90,7 +89,6 @@ public class AStar {
                 c.setScore(evaluate(n, child, final_b));
                 q.add(c);
             }
-            cur_state = q.poll();
         }
         return null;
     }
