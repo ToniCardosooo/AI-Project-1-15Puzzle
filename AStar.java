@@ -1,5 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class AStar {
     private Board initial_b;
@@ -66,12 +68,14 @@ public class AStar {
         return s;
     }
 
+    // A* Search algorithm that returns the playthrough to finish the game in a stack
     public Stack<Board> solveAStar(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
         AStarState cur_state = new AStarState(initial_b, 0);
         PriorityQueue<AStarState> q = new PriorityQueue<>();
+        Set<AStarState> visited = new TreeSet<AStarState>();
         q.add(cur_state);
 
         while (q.size() > 0){
@@ -87,7 +91,10 @@ public class AStar {
 
                 AStarState c = new AStarState(child, cur_state.getLevel() + 1);
                 c.setScore(evaluate(n, child, final_b));
-                q.add(c);
+                if (!visited.contains(c)){
+                    visited.add(c);
+                    q.add(c);
+                }               
             }
         }
         return null;
