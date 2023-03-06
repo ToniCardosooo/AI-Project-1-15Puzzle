@@ -72,11 +72,15 @@ public class Greedy {
     public Stack<Board> solveGreedy(int n) {
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
-        Set<GreedyState> visited = new TreeSet<GreedyState>();
+        
         GreedyState cur_state = new GreedyState(initial_b, 0);
-        PriorityQueue<GreedyState> q = new PriorityQueue<>();
 
+        PriorityQueue<GreedyState> q = new PriorityQueue<>();
         q.add(cur_state);   
+        
+        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
+        visited.add(initial_b);
+
         int max_size = 0;
         int max_level = 0;
 
@@ -86,8 +90,6 @@ public class Greedy {
             for (int[] v : vec){  
                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
-                //if (child.isEqual(cur_state.getBoardObject().getParent()))
-                //   continue;
 
                 if (isFinished(child.getBoard())) {
                     System.out.println("Maximum moves stored in memory: " + max_size);
@@ -95,13 +97,13 @@ public class Greedy {
                     return playthrough(child);
                 }
 
-                GreedyState c = new GreedyState(child, cur_state.getLevel() + 1);
-                c.setScore(evaluate(n, child, final_b));
+                if (!visited.contains(child)){
+                    visited.add(child);
 
-                if (!visited.contains(c)){
-                    visited.add(c);
+                    GreedyState c = new GreedyState(child, cur_state.getLevel() + 1);
+                    c.setScore(evaluate(n, child, final_b));
                     q.add(c);
-                } 
+                }
                 
                 if(cur_state.getLevel() > max_level) max_level = cur_state.getLevel();
                 if(q.size() > max_size) max_size = q.size();

@@ -28,7 +28,6 @@ public class GreedyState implements Comparable<GreedyState>{
 
         int[][] other_board = other.getBoardObject().getBoard();
         int[][] cur_board = cur.getBoard();
-        //if(other_board != cur_board)
         return cur_board.toString().compareTo(other_board.toString());
     }
 

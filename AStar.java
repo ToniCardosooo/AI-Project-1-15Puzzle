@@ -74,27 +74,38 @@ public class AStar {
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
         AStarState cur_state = new AStarState(initial_b, 0);
+
         PriorityQueue<AStarState> q = new PriorityQueue<>();
-        Set<AStarState> visited = new TreeSet<AStarState>();
         q.add(cur_state);
+
+        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
+        visited.add(initial_b);
 
         while (q.size() > 0){
             cur_state = q.poll();
+
+            System.out.println("Level = " + cur_state.getLevel());
+            System.out.println("Score = " + cur_state.getScore());
+            System.out.println("Board =\n" + cur_state.getBoardObject());
+
             for (int[] v : vec){  
                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
 
                 if (isFinished(child.getBoard())) {
-                System.out.println("Final state found");
-                return playthrough(child);
+                    System.out.println("Final state found");
+                    return playthrough(child);
                 }
 
-                AStarState c = new AStarState(child, cur_state.getLevel() + 1);
-                c.setScore(evaluate(n, child, final_b));
-                if (!visited.contains(c)){
-                    visited.add(c);
+                if (!visited.contains(child)){
+                    System.out.println("New state");
+                    visited.add(child);
+
+                    AStarState c = new AStarState(child, cur_state.getLevel() + 1);
+                    c.setScore(evaluate(n, child, final_b));
                     q.add(c);
-                }               
+                }
+                else System.out.println("Existing state");
             }
         }
         return null;

@@ -25,23 +25,16 @@ public class AStarState implements Comparable<AStarState>{
         if (cur_s != other_s) {
             return Integer.compare(cur_s, other_s);
         }
-
+        
         int other_lvl = other.getLevel();
         int cur_lvl = getLevel();
         if (cur_lvl != other_lvl) {
             return Integer.compare(cur_lvl, other_lvl);
         }
 
-        int[][] other_board = other.getBoardObject().getBoard();
-        int[][] cur_board = cur.getBoard();
+        Board other_board = other.getBoardObject();
+        Board cur_board = cur;
         return cur_board.toString().compareTo(other_board.toString());
-    }
-    
-    public boolean equals(AStarState other){
-        int[][] other_board = other.getBoardObject().getBoard();
-        int[][] cur_board = cur.getBoard();
-        if (cur_board.toString().equals(other_board.toString())) return true;
-        return false;
     }
 
 }

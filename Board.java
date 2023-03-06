@@ -79,6 +79,7 @@ public class Board{
     }
 
     // print
+    @Override
     public String toString(){
         String s = "";
         for (int i = 0; i < 4; i++){

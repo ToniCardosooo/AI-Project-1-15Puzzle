@@ -70,14 +70,16 @@ public class Game{
         Stack<Board> play = null;
         switch (args[0]) {
             case "DFS":
-                /* to add (meow) */
+                DFS a_DFS = new DFS(b_i, b_f);
+                play = a_DFS.solveDFS(20);
                 break;
             case "BFS":
-                /* to add (meow) */
+                BFS a_BFS = new BFS(b_i, b_f);
+                play = a_BFS.solveBFS();
                 break;
             case "IDFS":
                 IDFS a_IDFS = new IDFS(b_i, b_f);
-                play = a_IDFS.solveIDFS(80);
+                play = a_IDFS.solveIDFS(20);
                 break;
             case "A*-misplaced":
                 AStar a_AStar1 = new AStar(b_i, b_f);
