@@ -45,14 +45,18 @@ public class BFS{
         Queue<NIState> q = new LinkedList<NIState>();
         q.add(cur_state);
 
+        int maxInQ = 0;
+        
         while (q.size() > 0){
             cur_state = q.poll();
+
             for (int[] v : vec){  
                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
                 
                 if (isFinished(child.getBoard())) {
-                    System.out.println("Final state found");
+                    System.out.println("Maximum number of states in queue: " + maxInQ);
+                    System.out.println("Final state found at a depth of " + (cur_state.getLevel() + 1));
                     return playthrough(child);
                 }
 
@@ -61,7 +65,10 @@ public class BFS{
                     NIState c = new NIState(child, cur_state.getLevel() + 1);
                     q.add(c);
                 }                
+
             }
+
+            if (q.size() > maxInQ) maxInQ = q.size();
         }
 
         // if code reaches this point, then there is no solution for the given initial state

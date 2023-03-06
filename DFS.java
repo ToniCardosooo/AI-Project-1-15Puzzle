@@ -45,6 +45,8 @@ public class DFS{
             Stack<NIState> s = new Stack<>();
             s.push(cur_state);
 
+            int maxInS = 0;
+
             // main loop of DFS search
             while (s.size() > 0){
                 cur_state = s.pop();
@@ -66,7 +68,10 @@ public class DFS{
                 cur_path.push(cur_state);
                     
                 // create state in all directions (child states of current state)
-                for (int[] v : vec){  
+                for (int[] v : vec){
+                    // check if current state is over limit level
+                    if (cur_level > max_level) break;
+
                     // create child state
                     Board child_board = cur_board.setPos(x0+v[0], y0+v[1]);
                     NIState child_state = new NIState(child_board, cur_level+1);
@@ -76,7 +81,8 @@ public class DFS{
 
                     // check if child is the final state
                     if (isFinished(child_board.getBoard())){
-                        System.out.println("Final state found at level " + child_state.getLevel() + "\n");
+                        System.out.println("Maximum number of states in stack: " + maxInS);
+                        System.out.println("Final state found at a depth of " + (cur_state.getLevel() + 1));
                         return playthrough(child_board);
                     }
 
@@ -88,7 +94,8 @@ public class DFS{
                     }
 
                 } // end of for loop
-                                
+                
+                if (s.size() > maxInS) maxInS = s.size();
             } // end of while loop
 
         // if code reaches this point, then there is no solution for the given initial state

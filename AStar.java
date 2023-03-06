@@ -1,7 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
-import java.util.Set;
-import java.util.TreeSet;
+/* import java.util.Set;
+import java.util.TreeSet; */
 
 public class AStar {
     private Board initial_b;
@@ -78,26 +78,24 @@ public class AStar {
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
 
-        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
-        visited.add(initial_b);
+        /* Set<Board> visited = new TreeSet<Board>(new BoardComparator());
+        visited.add(initial_b); */
+        int maxInQ = 0;
 
         while (q.size() > 0){
             cur_state = q.poll();
-
-            System.out.println("Level = " + cur_state.getLevel());
-            System.out.println("Score = " + cur_state.getScore());
-            System.out.println("Board =\n" + cur_state.getBoardObject());
 
             for (int[] v : vec){  
                 Board child = cur_state.getBoardObject().setPos(v[0] + cur_state.getBoardObject().getPos()[0], v[1] + cur_state.getBoardObject().getPos()[1]);
                 if (child == null) continue;
 
                 if (isFinished(child.getBoard())) {
-                    System.out.println("Final state found");
+                    System.out.println("Maximum number of states in queue: " + maxInQ);
+                    System.out.println("Final state found at a depth of " + (cur_state.getLevel() + 1));
                     return playthrough(child);
                 }
 
-                if (!visited.contains(child)){
+                /* if (!visited.contains(child)){
                     System.out.println("New state");
                     visited.add(child);
 
@@ -105,9 +103,16 @@ public class AStar {
                     c.setScore(evaluate(n, child, final_b));
                     q.add(c);
                 }
-                else System.out.println("Existing state");
+                else System.out.println("Existing state"); */
+
+                AStarState c = new AStarState(child, cur_state.getLevel() + 1);
+                c.setScore(evaluate(n, child, final_b));
+                q.add(c);
             }
+
+            if (q.size() > maxInQ) maxInQ = q.size();
         }
+
         return null;
     }
 }

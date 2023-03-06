@@ -48,6 +48,7 @@ public class Game{
 
 
     // -------------------------------- MAIN --------------------------------
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
@@ -67,34 +68,42 @@ public class Game{
             return;
         }
 
+        long startTime = 0;
         Stack<Board> play = null;
         switch (args[0]) {
             case "DFS":
                 DFS a_DFS = new DFS(b_i, b_f);
-                play = a_DFS.solveDFS(20);
+                startTime = System.nanoTime();
+                play = a_DFS.solveDFS(15);
                 break;
             case "BFS":
                 BFS a_BFS = new BFS(b_i, b_f);
+                startTime = System.nanoTime();
                 play = a_BFS.solveBFS();
                 break;
             case "IDFS":
                 IDFS a_IDFS = new IDFS(b_i, b_f);
-                play = a_IDFS.solveIDFS(20);
+                startTime = System.nanoTime();
+                play = a_IDFS.solveIDFS(15);
                 break;
             case "A*-misplaced":
                 AStar a_AStar1 = new AStar(b_i, b_f);
+                startTime = System.nanoTime();
                 play = a_AStar1.solveAStar(1);
                 break;
             case "A*-Manhattan":
                 AStar a_AStar2 = new AStar(b_i, b_f);
+                startTime = System.nanoTime();
                 play = a_AStar2.solveAStar(2);
                 break;
             case "Greedy-misplaced":
                 Greedy a_Greedy1 = new Greedy(b_i, b_f);
+                startTime = System.nanoTime();
                 play = a_Greedy1.solveGreedy(1);
                 break;
             case "Greedy-Manhattan":
                 Greedy a_Greedy2 = new Greedy(b_i, b_f);
+                startTime = System.nanoTime();
                 play = a_Greedy2.solveGreedy(2);
                 break;
             default:
@@ -104,6 +113,10 @@ public class Game{
         if (play == null)
             System.out.println("A solution was not found!");
         else{
+            long endTime = System.nanoTime();
+            
+            System.out.println("The solution was found in " + ((endTime-startTime)/1000000) + " miliseconds!");
+
             while (play.size() > 0){
                 System.out.println(play.pop());
             }

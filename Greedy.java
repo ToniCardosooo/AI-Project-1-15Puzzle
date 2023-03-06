@@ -81,8 +81,7 @@ public class Greedy {
         Set<Board> visited = new TreeSet<Board>(new BoardComparator());
         visited.add(initial_b);
 
-        int max_size = 0;
-        int max_level = 0;
+        int maxInQ = 0;
 
         while (q.size() > 0){
             cur_state = q.poll();
@@ -92,8 +91,8 @@ public class Greedy {
                 if (child == null) continue;
 
                 if (isFinished(child.getBoard())) {
-                    System.out.println("Maximum moves stored in memory: " + max_size);
-                    System.out.println("Final state found at a depth of " + (max_level+1));
+                    System.out.println("Maximum moves stored in memory: " + maxInQ);
+                    System.out.println("Final state found at a depth of " + (cur_state.getLevel() + 1));
                     return playthrough(child);
                 }
 
@@ -105,9 +104,9 @@ public class Greedy {
                     q.add(c);
                 }
                 
-                if(cur_state.getLevel() > max_level) max_level = cur_state.getLevel();
-                if(q.size() > max_size) max_size = q.size();
             }
+            
+            if (q.size() > maxInQ) maxInQ = q.size();
         }
         return null;
     }

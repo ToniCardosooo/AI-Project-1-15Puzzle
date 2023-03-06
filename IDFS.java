@@ -48,6 +48,8 @@ public class IDFS{
             Stack<NIState> s = new Stack<>();
             s.push(cur_state);
 
+            int maxInS = 0;
+
             // main loop of DFS search
             while (s.size() > 0){
                 cur_state = s.pop();
@@ -82,7 +84,8 @@ public class IDFS{
 
                     // check if child is the final state
                     if (isFinished(child_board.getBoard())){
-                        System.out.println("Final state found at level " + child_state.getLevel() + "\n");
+                        System.out.println("Maximum number of states in stack: " + maxInS);
+                        System.out.println("Final state found at a depth of " + (cur_state.getLevel() + 1));
                         return playthrough(child_board);
                     }
 
@@ -94,7 +97,8 @@ public class IDFS{
                     }
 
                 } // end of for loop
-                                
+                
+                if (s.size() > maxInS) maxInS = s.size();
             } // end of while loop
             
         } // end of iterative DFS loop
