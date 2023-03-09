@@ -1,7 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
-/* import java.util.Set;
-import java.util.TreeSet; */
+import java.util.Set;
+import java.util.TreeSet;
 
 public class AStar {
     private Board initial_b;
@@ -78,8 +78,8 @@ public class AStar {
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
 
-        /* Set<Board> visited = new TreeSet<Board>(new BoardComparator());
-        visited.add(initial_b); */
+        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
+        visited.add(initial_b);
         int maxInQ = 0;
 
         while (q.size() > 0){
@@ -95,7 +95,7 @@ public class AStar {
                     return playthrough(child);
                 }
 
-                /* if (!visited.contains(child)){
+                if (!visited.contains(child)){
                     System.out.println("New state");
                     visited.add(child);
 
@@ -103,11 +103,7 @@ public class AStar {
                     c.setScore(evaluate(n, child, final_b));
                     q.add(c);
                 }
-                else System.out.println("Existing state"); */
-
-                AStarState c = new AStarState(child, cur_state.getLevel() + 1);
-                c.setScore(evaluate(n, child, final_b));
-                q.add(c);
+                else System.out.println("Existing state");
             }
 
             if (q.size() > maxInQ) maxInQ = q.size();
