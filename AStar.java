@@ -96,14 +96,12 @@ public class AStar {
                 }
 
                 if (!visited.contains(child)){
-                    System.out.println("New state");
                     visited.add(child);
 
                     AStarState c = new AStarState(child, cur_state.getLevel() + 1);
                     c.setScore(evaluate(n, child, final_b));
                     q.add(c);
                 }
-                else System.out.println("Existing state");
             }
 
             if (q.size() > maxInQ) maxInQ = q.size();
