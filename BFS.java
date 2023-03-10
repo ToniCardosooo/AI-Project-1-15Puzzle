@@ -38,7 +38,8 @@ public class BFS{
     public Stack<Board> solveBFS(){
       
         NIState cur_state = new NIState(initial_b, 0);
-        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
+        Set<NIState> visited = new TreeSet<NIState>();
+        visited.add(cur_state);
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
         // queue for BFS algorithm
@@ -60,9 +61,9 @@ public class BFS{
                     return playthrough(child);
                 }
 
-                if (!visited.contains(child)){
-                    visited.add(child);
-                    NIState c = new NIState(child, cur_state.getLevel() + 1);
+                NIState c = new NIState(child, cur_state.getLevel() + 1);
+                if (!visited.contains(c)){
+                    visited.add(c);
                     q.add(c);
                 }
 
