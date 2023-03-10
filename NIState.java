@@ -14,10 +14,16 @@ public class NIState implements Comparable<NIState>{
 
     // comparator
     public int compareTo(NIState other){
-        int[][] other_board = other.getBoardObject().getBoard();
-        int[][] cur_board = cur_b.getBoard();
+        Board other_board = other.getBoardObject();
+        Board cur_board = cur_b;
 
         return cur_board.toString().compareTo(other_board.toString());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        NIState other = (NIState) obj;
+        if (this.compareTo(other) == 0) return true;
+        return false;
+    }
 }

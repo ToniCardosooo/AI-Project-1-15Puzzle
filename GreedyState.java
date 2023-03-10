@@ -26,9 +26,16 @@ public class GreedyState implements Comparable<GreedyState>{
             return Integer.compare(cur_s, other_s);
         }
 
-        int[][] other_board = other.getBoardObject().getBoard();
-        int[][] cur_board = cur.getBoard();
+        Board other_board = other.getBoardObject();
+        Board cur_board = cur;
         return cur_board.toString().compareTo(other_board.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        GreedyState other = (GreedyState) obj;
+        if (this.compareTo(other) == 0) return true;
+        return false;
     }
 
 }

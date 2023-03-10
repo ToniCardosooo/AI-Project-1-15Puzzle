@@ -64,7 +64,7 @@ public class BFS{
                     visited.add(child);
                     NIState c = new NIState(child, cur_state.getLevel() + 1);
                     q.add(c);
-                }                
+                }
 
             }
 

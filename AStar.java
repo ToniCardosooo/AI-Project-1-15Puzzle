@@ -78,8 +78,8 @@ public class AStar {
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
 
-        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
-        visited.add(initial_b);
+        Set<AStarState> visited = new TreeSet<AStarState>();
+        visited.add(cur_state);
         int maxInQ = 0;
 
         while (q.size() > 0){
@@ -94,14 +94,14 @@ public class AStar {
                     System.out.println("Final state found at a depth of " + (cur_state.getLevel() + 1));
                     return playthrough(child);
                 }
-
-                if (!visited.contains(child)){
-                    visited.add(child);
-
-                    AStarState c = new AStarState(child, cur_state.getLevel() + 1);
-                    c.setScore(evaluate(n, child, final_b));
+                
+                AStarState c = new AStarState(child, cur_state.getLevel() + 1);
+                c.setScore(evaluate(n, child, final_b));
+                if (!visited.contains(c)){
+                    visited.add(c);    
                     q.add(c);
                 }
+                
             }
 
             if (q.size() > maxInQ) maxInQ = q.size();

@@ -78,8 +78,8 @@ public class Greedy {
         PriorityQueue<GreedyState> q = new PriorityQueue<>();
         q.add(cur_state);   
         
-        Set<Board> visited = new TreeSet<Board>(new BoardComparator());
-        visited.add(initial_b);
+        Set<GreedyState> visited = new TreeSet<GreedyState>();
+        visited.add(cur_state);
 
         int maxInQ = 0;
 
@@ -96,11 +96,10 @@ public class Greedy {
                     return playthrough(child);
                 }
 
-                if (!visited.contains(child)){
-                    visited.add(child);
-
-                    GreedyState c = new GreedyState(child, cur_state.getLevel() + 1);
-                    c.setScore(evaluate(n, child, final_b));
+                GreedyState c = new GreedyState(child, cur_state.getLevel() + 1);
+                c.setScore(evaluate(n, child, final_b));
+                if (!visited.contains(c)){
+                    visited.add(c);
                     q.add(c);
                 }
                 
