@@ -5,7 +5,9 @@
 ### Vista Geral
 
 Este projeto foi desenvolvido no âmbito da Unidade Curricular *Inteligência Artificial*, durante o ano letivo 2022/2023, na Faculdade de Ciências da Universidade do Porto, pelos alunos António Cardoso, Bárbara Santos e Isabel Brito.
+
 O seu principal objetivo é a implementação completa do [Jogo dos 15](https://pt.wikipedia.org/wiki/O_jogo_do_15 "Descrição do Jogo dos 15 - Wikipédia") e de diferentes algoritmos de pesquisa que procurem a solução, mediante o input dado. Para tal, foi escolhida a linguagem Java, devido à sua relação com Programação Orientada a Objetos, o facto de ser *strongly-typed*, o seu "*Garbage Collector*", entre outros motivos.
+
 O programa foi compilado tanto em *Ubuntu 20.04 LTS* com *javac 11.0.17* como *macOS Monterey version 12.2.1* com *javac 18.0.2.1*.
 
 ### Instruções de Compilação e Execução
