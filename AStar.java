@@ -78,7 +78,7 @@ public class AStar {
         PriorityQueue<AStarState> q = new PriorityQueue<>();
         q.add(cur_state);
 
-        Set<AStarState> visited = new TreeSet<AStarState>();
+        Set<AStarState> visited = new TreeSet<AStarState>(new AStarStateComparator());
         visited.add(cur_state);
         int maxInQ = 0;
 

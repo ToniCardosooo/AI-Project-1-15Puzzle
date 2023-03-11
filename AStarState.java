@@ -37,11 +37,4 @@ public class AStarState implements Comparable<AStarState>{
         return cur_board.toString().compareTo(other_board.toString());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        AStarState other = (AStarState) obj;
-        if (this.compareTo(other) == 0) return true;
-        return false;
-    }
-
 }
