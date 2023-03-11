@@ -34,6 +34,7 @@ public class IDFS{
     public Stack<Board> solveIDFS(int max_level){
         NIState cur_state;
         Stack<NIState> cur_path;
+        Stack<NIState> s;
 
         int[][] vec = {{-1,0}, {1,0}, {0,-1}, {0,1}}; // up, down, left, right (respectively)
 
@@ -45,7 +46,7 @@ public class IDFS{
             cur_path = new Stack<NIState>();
 
             // stack for DFS algorithm
-            Stack<NIState> s = new Stack<>();
+            s = new Stack<NIState>();
             s.push(cur_state);
 
             int maxInS = 0;
