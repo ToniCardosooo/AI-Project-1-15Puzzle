@@ -24,7 +24,7 @@ Após a compilação de todos os ficheiros, é possível, finalmente, executá-l
 - A*-Manhattan
 
 Para a execução de cada um, utilizar o seguinte formato de entrada:
-`java Game strategy`, onde "strategy" deve ser substituido pelo nome do algoritmo desejado.
+`java Game strategy < input.txt`, onde "strategy" deve ser substituido pelo nome do algoritmo desejado e "input.txt" pelo nome do ficheiro de texto onde se encontram as configurações inicial e final. É também possível, no entanto, não colocar esta última parte e inserir o input pelo terminal.
 
 O programa irá aguardar o input. O mesmo deve ser fornecido pela ordem tabuleiro inicial, tabuleiro final. Exemplo:
 1 2 3 4 5 7 8 0 9 13 12 6 14 11 10 15
