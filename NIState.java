@@ -26,4 +26,5 @@ public class NIState implements Comparable<NIState>{
         if (this.compareTo(other) == 0) return true;
         return false;
     }
+
 }

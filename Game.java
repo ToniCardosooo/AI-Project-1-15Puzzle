@@ -76,43 +76,43 @@ public class Game{
                 startTime = System.nanoTime();
                 play = a_DFS.solveDFS(15);
                 break;
-
+                
             case "BFS":
                 BFS a_BFS = new BFS(b_i, b_f);
                 startTime = System.nanoTime();
                 play = a_BFS.solveBFS();
                 break;
-
+                
             case "IDFS":
                 IDFS a_IDFS = new IDFS(b_i, b_f);
                 startTime = System.nanoTime();
                 play = a_IDFS.solveIDFS(50);
                 break;
-
+                
             case "A*-misplaced":
                 AStar a_AStar1 = new AStar(b_i, b_f);
                 startTime = System.nanoTime();
                 play = a_AStar1.solveAStar(1);
                 break;
-
+                
             case "A*-Manhattan":
                 AStar a_AStar2 = new AStar(b_i, b_f);
                 startTime = System.nanoTime();
                 play = a_AStar2.solveAStar(2);
                 break;
-
+                
             case "Greedy-misplaced":
                 Greedy a_Greedy1 = new Greedy(b_i, b_f);
                 startTime = System.nanoTime();
                 play = a_Greedy1.solveGreedy(1);
                 break;
-
+                
             case "Greedy-Manhattan":
                 Greedy a_Greedy2 = new Greedy(b_i, b_f);
                 startTime = System.nanoTime();
                 play = a_Greedy2.solveGreedy(2);
                 break;
-
+                
             default:
                 break;
         }
