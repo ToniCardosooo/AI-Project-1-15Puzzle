@@ -13,7 +13,9 @@ O programa foi compilado tanto em *Ubuntu 20.04 LTS* com *javac 11.0.17* como *m
 ### Instruções de Compilação e Execução
 
 Para poder executar cada problema é primeiro necessário compilar todos os ficheiros java. Para tal, utilize a seguinte instrução:
+
 `javac *.java`
+
 Após a compilação de todos os ficheiros, é possível, finalmente, executá-los. Foram desenvolvidos os seguintes algoritmos:
 - BFS
 - DFS
@@ -26,7 +28,10 @@ Após a compilação de todos os ficheiros, é possível, finalmente, executá-l
 Para a execução de cada um, utilizar o seguinte formato de entrada:
 `java Game strategy < input.txt`, onde "strategy" deve ser substituido pelo nome do algoritmo desejado e "input.txt" pelo nome do ficheiro de texto onde se encontram as configurações inicial e final. É também possível, no entanto, não colocar esta última parte e inserir o input pelo terminal.
 
-O programa irá aguardar o input. O mesmo deve ser fornecido pela ordem tabuleiro inicial, tabuleiro final. Exemplo:
+O programa irá aguardar o input. O mesmo deve ser fornecido pela ordem tabuleiro inicial, tabuleiro final.
+
+Exemplo:
+
 1 2 3 4 5 7 8 0 9 13 12 6 14 11 10 15
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 0
 
