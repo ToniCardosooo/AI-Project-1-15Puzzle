@@ -33,6 +33,7 @@ O programa irá aguardar o input. O mesmo deve ser fornecido pela ordem tabuleir
 Exemplo:
 
 1 2 3 4 5 7 8 0 9 13 12 6 14 11 10 15
+
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 0
 
 É esperado que, após a execução do problema, seja impresso o número máximo de estados guardados em memória, o nível da solução encontrada e o tempo que o algoritmo demorou a encontrar a mesma, para além dos passos necessários para chegar ao tabuleiro final.
